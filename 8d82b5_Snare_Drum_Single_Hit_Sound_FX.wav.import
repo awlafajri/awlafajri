@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/8d82b5_Snare_Drum_Single_Hit_Sound_FX.wav-3ed38c5f39d2b0eedb05a386dab386c3.sample"
+
+[deps]
+
+source_file="res://8d82b5_Snare_Drum_Single_Hit_Sound_FX.wav"
+dest_files=[ "res://.import/8d82b5_Snare_Drum_Single_Hit_Sound_FX.wav-3ed38c5f39d2b0eedb05a386dab386c3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

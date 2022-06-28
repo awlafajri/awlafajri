@@ -1,0 +1,134 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Chara.tscn" type="PackedScene" id=1]
+[ext_resource path="res://bg/Stage 1A/Level1BG.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Chara.gd" type="Script" id=3]
+[ext_resource path="res://AudioStreamPlayer.gd" type="Script" id=4]
+[ext_resource path="res://Transition.tscn" type="PackedScene" id=5]
+[ext_resource path="res://hit.gd" type="Script" id=6]
+[ext_resource path="res://hitbox.gd" type="Script" id=7]
+[ext_resource path="res://Minion2D.gd" type="Script" id=8]
+[ext_resource path="res://font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Score.gd" type="Script" id=10]
+[ext_resource path="res://ProgressBar.gd" type="Script" id=11]
+[ext_resource path="res://bg/idle.png" type="Texture" id=12]
+[ext_resource path="res://FeverLogolarge2.png" type="Texture" id=13]
+[ext_resource path="res://musik/My Video.wav" type="AudioStream" id=14]
+[ext_resource path="res://musik/My Video1.wav" type="AudioStream" id=15]
+[ext_resource path="res://musik/Recording (7).wav" type="AudioStream" id=16]
+[ext_resource path="res://Level1.gd" type="Script" id=17]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.7 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 17 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Level1BG" parent="." instance=ExtResource( 2 )]
+
+[node name="Chara" parent="." instance=ExtResource( 1 )]
+position = Vector2( 181, 0 )
+script = ExtResource( 3 )
+
+[node name="Spawner" type="Node2D" parent="."]
+
+[node name="SpawnerBawah" type="Position2D" parent="Spawner"]
+position = Vector2( 2120, 776 )
+
+[node name="SpawnerAtas" type="Position2D" parent="Spawner"]
+position = Vector2( 2120, 378 )
+
+[node name="Minion2D" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="hitbox" type="Sprite" parent="."]
+position = Vector2( 173, 0 )
+scale = Vector2( 2.82243, 1 )
+texture = ExtResource( 12 )
+centered = false
+script = ExtResource( 7 )
+
+[node name="ProgressBar" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="TextureProgress" type="TextureProgress" parent="ProgressBar"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fever" type="Sprite" parent="."]
+position = Vector2( 375, 195 )
+texture = ExtResource( 13 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fever"]
+autoplay = "idle"
+anims/RESET = SubResource( 1 )
+anims/idle = SubResource( 2 )
+
+[node name="music1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -10.0
+script = ExtResource( 4 )
+
+[node name="hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+script = ExtResource( 6 )
+
+[node name="Fever2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = 10.0
+
+[node name="Score" type="Label" parent="."]
+margin_left = 867.0
+margin_top = 944.0
+margin_right = 1880.0
+margin_bottom = 1050.0
+custom_colors/font_color = Color( 0.968627, 0.94902, 0.94902, 1 )
+custom_fonts/font = ExtResource( 9 )
+text = "0
+"
+align = 2
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Transition" parent="." instance=ExtResource( 5 )]
